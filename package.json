@@ -1,0 +1,27 @@
+{
+  "name": "nxthacks-project",
+  "version": "0.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/toenu23/nxthacks-project.git"
+  },
+  "author": "toenu <toenu23@gmail.com> (http://nxtresource.com/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/toenu23/nxthacks-project/issues"
+  },
+  "homepage": "https://github.com/toenu23/nxthacks-project#readme",
+  "dependencies": {
+    "express": "^4.13.2",
+    "request": "^2.60.0",
+    "socket.io": "^1.3.6"
+  },
+  "devDependencies": {
+    "mocha": "^2.2.5"
+  }
+}
