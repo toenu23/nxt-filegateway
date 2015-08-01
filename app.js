@@ -12,7 +12,7 @@ var app = express();
 app.set('port', config.port);
 var server = http.createServer(app);
 server.listen(app.get('port'), function(err, result) {
-    log.info('Server listening on port ' + app.get('port'));
+  log.info('Server listening on port ' + app.get('port'));
 });
 
 
@@ -30,5 +30,35 @@ app.get('/channel/*', function(req, res, next) {
 });
 
 app.get('/file/*', function(req, res, next) {
+  var txId = req.params[0];
+  var query = {
+    requestType: 'getTaggedData',
+    transaction: txId,
+  };
+  nxt.call(query, function(err, resp) {
+    if (err) {
+      res.status(500);
+      res.send(err);
+      return;
+    }
+    if (!resp.transaction) {
+      res.status(404);
+      res.send('Not found');
+      return;
+    }
 
+    // Use provided mime type if valid, otherwise application/octet-stream
+    var mimeType = resp.type.match(/^[-\w+]+\/[-\w+]+$/)
+      ? resp.type
+      : 'application/octet-stream';
+    res.contentType(mimeType);
+
+    // Convert data to buffer if hex encoded, otherwise send raw data
+    var data = resp.data.match(/^[0-9a-f]+$/i)
+      ? new Buffer(resp.data, 'hex')
+      : resp.data;
+
+    res.send(data);
+  });
 });
+
