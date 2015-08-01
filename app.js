@@ -1,6 +1,7 @@
 // Requirements
 var http = require('http');
 var fs = require('fs');
+var path = require('path');
 var express = require('express');
 var Log = require('log');
 var log = new Log();
@@ -11,6 +12,7 @@ var nxt = require('./lib/nxt');
 // HTTP Server
 var app = express();
 app.set('port', config.port);
+app.use(express.static(path.join(__dirname, 'public')));
 var server = http.createServer(app);
 server.listen(app.get('port'), function(err, result) {
   log.info('Server listening on port ' + app.get('port'));
@@ -28,15 +30,15 @@ var sendHtmlFile = function(res, file) {
 
 // Routes
 app.get('/', function(req, res, next) {
-  sendHtmlFile(res, 'views/index.html');
+  sendHtmlFile(res, 'public/index.html');
 });
 
 app.get('/tag/*', function(req, res, next) {
-  sendHtmlFile(res, 'views/tag.html');
+  sendHtmlFile(res, 'public/tag.html');
 });
 
 app.get('/channel/*', function(req, res, next) {
-  sendHtmlFile(res, 'views/channel.html');
+  sendHtmlFile(res, 'public/channel.html');
 });
 
 app.get('/file/*', function(req, res, next) {
