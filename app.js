@@ -7,7 +7,7 @@ var nxt = require('./lib/nxt');
 
 // HTTP Server
 var app = express();
-app.set('port', 2332);
+app.set('port', config.port);
 var server = http.createServer(app);
 server.listen(app.get('port'), function(err, result) {
     console.log('Server listening on port ' + app.get('port'));
