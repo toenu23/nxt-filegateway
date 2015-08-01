@@ -1,5 +1,6 @@
 // Requirements
 var http = require('http');
+var fs = require('fs');
 var express = require('express');
 var Log = require('log');
 var log = new Log();
@@ -15,18 +16,27 @@ server.listen(app.get('port'), function(err, result) {
   log.info('Server listening on port ' + app.get('port'));
 });
 
+var sendHtmlFile = function(res, file) {
+  fs.readFile(file, function(err, data) {
+    if (err) {
+      return log.error(err);
+    }
+    res.header('Content-Type', 'text/html');
+    res.send(data);
+  });
+};
 
 // Routes
 app.get('/', function(req, res, next) {
-
+  sendHtmlFile(res, 'views/index.html');
 });
 
 app.get('/tag/*', function(req, res, next) {
-
+  sendHtmlFile(res, 'views/tag.html');
 });
 
 app.get('/channel/*', function(req, res, next) {
-
+  sendHtmlFile(res, 'views/channel.html');
 });
 
 app.get('/file/*', function(req, res, next) {
