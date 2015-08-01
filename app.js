@@ -21,7 +21,22 @@ server.listen(app.get('port'), function(err, result) {
 // socket.io
 var io = require('socket.io').listen(server);
 io.sockets.on('connection', function(socket) {
-  log.debug(socket);
+  //log.debug(socket);
+
+  socket.on('uploadFile', function(data) {
+
+    socket.emit('uploadDone', {});
+
+    socket.emit('uploadError', {});
+
+  });
+
+  socket.on('getFiles', function(data) {
+
+    socket.emit('fileList', {});
+
+  });
+
 });
 
 // Send html file

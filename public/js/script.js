@@ -9,8 +9,21 @@
 
   var mainController = function($scope, $timeout) {
 
+    socket.emit('uploadFile', {});
 
+    socket.on('uploadDone', function(data) {
 
+    });
+
+    socket.on('uploadError', function(data) {
+
+    });
+
+    socket.emit('getFiles', {});
+
+    socket.on('fileList', function(data) {
+
+    });
 
   };
 
