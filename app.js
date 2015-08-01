@@ -27,16 +27,23 @@ io.sockets.on('connection', function(socket) {
 
     socket.emit('uploadDone', {});
 
-    socket.emit('uploadError', {});
+    socket.emit('_error', {});
 
   });
 
   socket.on('getFiles', function(data) {
-
-    socket.emit('fileList', {});
-
+    var query = {
+      requestType: 'getAllTaggedData',
+      includeData: false,
+    };
+    nxt.call(query, function(err, resp) {
+      if (err) {
+        socket.emit('_error');
+        return;
+      }
+      socket.emit('fileList', resp.taggedData);
+    });
   });
-
 });
 
 // Send html file
