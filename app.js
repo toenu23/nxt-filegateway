@@ -18,6 +18,13 @@ server.listen(app.get('port'), function(err, result) {
   log.info('Server listening on port ' + app.get('port'));
 });
 
+// socket.io
+var io = require('socket.io').listen(server);
+io.sockets.on('connection', function(socket) {
+  log.debug(socket);
+});
+
+// Send html file
 var sendHtmlFile = function(res, file) {
   fs.readFile(file, function(err, data) {
     if (err) {
