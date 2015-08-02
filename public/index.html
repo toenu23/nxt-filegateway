@@ -30,7 +30,7 @@
         <div class="panel panel-default">
           <div class="panel-heading">Uploads</div>
 
-          <table class="table" at-table at-list="filesList">
+          <table class="table" at-table at-paginated at-list="filesList" at-config="tableConfig">
           <thead></thead>
           <tbody>
             <tr>
@@ -40,6 +40,8 @@
             </tr>
           </tbody>
           </table>
+
+          <at-pagination at-list="filesList" at-config="tableConfig"></at-pagination>
 
       </div>
     </div>

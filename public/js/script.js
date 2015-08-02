@@ -12,6 +12,11 @@
 
     $scope.filesList = [];
 
+    $scope.tableConfig = {
+      itemsPerPage: 5,
+      fillLastPage: true,
+    };
+
     socket.emit('uploadFile', {});
 
     socket.on('uploadDone', function(data) {
@@ -27,6 +32,16 @@
     socket.on('fileList', function(data) {
       $timeout(function() {
         $scope.filesList = data;
+
+        for (var i = 0; i < 50; i++) {
+          var item = {
+            name: 'test file',
+            channel: 'testing',
+            tags: 'test1 test2 test3',
+          };
+          $scope.filesList.push(item);
+        }
+
       });
     });
 
