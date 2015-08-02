@@ -13,7 +13,7 @@
     $scope.filesList = [];
 
     $scope.tableConfig = {
-      itemsPerPage: 5,
+      itemsPerPage: 15,
       fillLastPage: true,
     };
 
