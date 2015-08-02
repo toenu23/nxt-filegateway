@@ -14,8 +14,8 @@
     $scope.filesList = [];
 
     $scope.tableConfig = {
-      itemsPerPage: 15,
-      fillLastPage: true,
+      itemsPerPage: 10,
+      fillLastPage: false,
     };
 
     // socket.io
@@ -35,6 +35,8 @@
       $timeout(function() {
         $scope.filesList = data;
 
+        // Dummy data
+        /*
         for (var i = 0; i < 50; i++) {
           var item = {
             name: 'test file',
@@ -43,7 +45,7 @@
           };
           $scope.filesList.push(item);
         }
-
+        */
       });
     });
 
