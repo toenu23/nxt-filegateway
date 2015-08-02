@@ -4,6 +4,7 @@
 
   var dependencies = [
     'angular-table',
+    'ui.bootstrap',
   ];
 
   var app = angular.module('FileApp', dependencies);
