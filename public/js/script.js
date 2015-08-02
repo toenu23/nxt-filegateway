@@ -18,7 +18,6 @@
       fillLastPage: true,
     };
 
-
     // socket.io
     socket.emit('uploadFile', {});
 
@@ -49,28 +48,19 @@
     });
 
     // Modals
-    $scope.items = ['item1', 'item2', 'item3'];
-
-    $scope.animationsEnabled = true;
-
-    $scope.openUploadModal = function(size) {
-
+    $scope.openUploadModal = function() {
       var modalInstance = $modal.open({
-        animation: $scope.animationsEnabled,
-        templateUrl: 'myModalContent.html',
+        animation: true,
+        templateUrl: 'uploadModal.html',
         controller: 'ModalInstanceCtrl',
-        size: size,
-        resolve: {
-          items: function() {
-            return $scope.items;
-          }
-        }
       });
+    };
 
-      modalInstance.result.then(function(selectedItem) {
-        $scope.selected = selectedItem;
-      }, function() {
-        $log.info('Modal dismissed at: ' + new Date());
+    $scope.openExtendModal = function() {
+      var modalInstance = $modal.open({
+        animation: true,
+        templateUrl: 'extendModal.html',
+        controller: 'ModalInstanceCtrl',
       });
     };
 
@@ -81,7 +71,6 @@
     $scope.cancel = function() {
       $modalInstance.dismiss('cancel');
     };
-
   };
 
   var mainControllerArgs = [
@@ -96,6 +85,7 @@
   app.controller('ModalInstanceCtrl', function($scope, $modalInstance) {
     $scope.ok = function() {
       $modalInstance.close();
+      alert('Sorry, not implemented yet!');
     };
     $scope.cancel = function() {
       $modalInstance.dismiss('cancel');

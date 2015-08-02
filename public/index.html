@@ -44,7 +44,7 @@
                 <a target="_blank" href="file/{{ item.transaction }}" title="Open">
                   <span class="glyphicon glyphicon-eye-open"></span>
                 </a>
-                <a href title="Extend">
+                <a href ng-click="openExtendModal()" title="Extend">
                   <span class="glyphicon glyphicon-time"></span>
                 </a>
               </td>
@@ -59,18 +59,55 @@
 
   </div>
 
-  <script type="text/ng-template" id="myModalContent.html">
+  <script type="text/ng-template" id="uploadModal.html">
     <div class="modal-header">
-      <h3 class="modal-title">I'm a modal!</h3>
+      <h3 class="modal-title">File Upload</h3>
     </div>
-    <div class="modal-body">
-      modal content
-    </div>
+    <form id="uploadForm" class="modal-body">
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" class="form-control" id="fileName" />
+      </div>
+      <div class="form-group">
+        <label for="name">Description</label>
+        <textarea class="form-control" id="fileDescription"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="name">Channel</label>
+        <input type="text" class="form-control" id="fileChannel" />
+      </div>
+      <div class="form-group">
+        <label for="name">Tags</label>
+        <input type="text" class="form-control" id="fileTags" />
+      </div>
+      <div class="form-group">
+        <label for="name">File (max. ~42k)</label>
+        <input type="file" class="form-control" id="fileFile" />
+      </div>
+      <div class="form-group">
+        <label for="name">Passphrase</label>
+        <input type="passphrase" class="form-control" id="filePassphrase" />
+      </div>
+
+    </form>
     <div class="modal-footer">
      <button class="btn btn-primary" ng-click="ok()">OK</button>
      <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
    </div>
  </script>
 
+  <script type="text/ng-template" id="extendModal.html">
+    <div class="modal-header">
+      <h3 class="modal-title">Extend</h3>
+    </div>
+    <form id="extendForm" class="modal-body">
+      <p>Sorry not implemented yet!</p>
+    </form>
+    <div class="modal-footer">
+     <button class="btn btn-primary" ng-click="ok()">OK</button>
+     <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+   </div>
+
+  </script>
 </body>
 </html>
